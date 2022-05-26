@@ -1,0 +1,32 @@
+#include<stdio.h>
+  2 #include<string.h>
+  3 #include<unistd.h>
+  4 #include<stdlib.h>
+  5 #include<sys/wait.h>
+  6 int main(){
+  7     int pd1[2],pd2[2];
+  8     char s1[100] = "BVRIT",s2[100] = "Hyderabad",s3[100],s4[100];
+  9     pipe(pd1);
+ 10     pipe(pd2);
+ 11     int p = fork();
+ 12     if(p > 0){  //parent process is executing
+ 13         close(pd1[0]);
+ 14         write(pd1[1],s1,strlen(s1));
+ 15         close(pd1[1]);
+ 16         wait(NULL);
+ 17         close(pd2[1]);
+ 18         read(pd2[0],s4,20);
+ 19         printf("string 2 = %s\n",s4);
+ 20         close(pd2[0]);
+ 21     }
+ 22     else if(p == 0){ // child process is executing
+ 23         close(pd1[1]);
+ 24         read(pd1[0],s3,strlen(s3));
+ 25         printf("string 1 %s\n",s3);
+ 26         close(pd1[0]);
+ 27         close(pd2[0]);
+ 28         write(pd2[1],s2,strlen(s2));
+ 29         close(pd2[1]);
+ 30         exit(0);
+ 31     }
+ 32 }
