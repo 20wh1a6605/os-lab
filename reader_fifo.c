@@ -23,4 +23,7 @@
       return 0;
       }
 
-
+/*Out put:
+hi 
+user1 : hello
+/*
