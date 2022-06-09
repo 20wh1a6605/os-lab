@@ -16,7 +16,7 @@
   msgctl(msgid,IPC_RMID,NULL);
   return 0;
   }
-/*hello
+/*
 Data received is hi
 
 */
