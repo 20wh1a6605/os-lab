@@ -23,3 +23,7 @@ int main(){
         }
     return 0;
     }
+/*Output:
+hello
+user2 : hi
+/*
